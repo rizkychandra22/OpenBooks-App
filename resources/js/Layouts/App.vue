@@ -17,7 +17,7 @@ const isActive = (routeName) => {
             <div class="container py-2">
                 <Link class="navbar-brand fw-bold app-brand" :href="route('homepage')">
                     <span class="brand-icon"><i class="bi bi-book-half"></i></span>
-                    <span>Openov</span>
+                    <span>OpenBooks</span>
                 </Link>
                 
                 <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
