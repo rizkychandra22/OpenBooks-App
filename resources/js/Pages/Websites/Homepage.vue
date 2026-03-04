@@ -138,6 +138,7 @@ onMounted(() => {
     position: absolute;
     top: 15px;
     right: 15px;
+    margin-left: 15px;
     background: rgba(20, 184, 166, 0.9); /* Teal cerah */
     backdrop-filter: blur(4px);
     color: #ffffff;
