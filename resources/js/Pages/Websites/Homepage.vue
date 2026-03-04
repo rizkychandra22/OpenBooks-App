@@ -12,6 +12,7 @@ const admin = computed(() =>
     page.props.auth?.user?.role === 'admin'
 )
 const books = computed(() => props.allBooks || [])
+
 onMounted(() => {
     console.log("Data allBooks Open Library:", props.allBooks)
 })
@@ -34,10 +35,10 @@ onMounted(() => {
                     <div class="book-cover-wrapper">
                         
                         <!-- COVER -->
-                        <img 
-                            v-if="book.cover" 
-                            :src="book.cover"
-                            class="card-img-top book-cover" 
+                        <img v-if="book.cover_url" 
+                            class="card-img-top book-cover"
+                            loading="lazy"
+                            :src="book.cover_url" 
                             :alt="book.title"
                         >
 
@@ -47,12 +48,12 @@ onMounted(() => {
                         </div>
 
                         <div class="book-badge">
-                            {{ book.category?.name || 'Umum' }}
+                            {{ book.category_name }}
                         </div>
                     </div>
 
                     <div class="card-body bg-white d-flex flex-column p-4">
-                        <h5 class="card-title fw-bold mb-1 text-truncate text-dark">
+                        <h5 class="card-title fw-bold mb-1 text-dark">
                             {{ book.title }}
                         </h5>
 
@@ -69,7 +70,7 @@ onMounted(() => {
                         </div>
 
                         <div v-else class="mt-auto">
-                            <Link :href="route('login')" 
+                            <Link :href="route('book.detail', book.external_id)" 
                                 class="btn btn-sm btn-action-read w-100 rounded-pill fw-bold">
                                 Lihat Detail
                             </Link>
@@ -92,6 +93,7 @@ onMounted(() => {
 
 /* Kartu dengan warna cerah dan bayangan lembut */
 .book-card {
+    transition: all 0.5s ease;
     border-radius: 20px;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -112,7 +114,7 @@ onMounted(() => {
 .book-cover {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: none;
     transition: transform 0.6s ease;
 }
 

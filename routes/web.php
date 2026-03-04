@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 // Website Books
 Route::get('/', [Homepage::class, 'blogIndex'])->name('homepage');
+Route::get('/detail/books/{id}', [Homepage::class, 'show'])->name('book.detail');
 
 // Route untuk Guest (Hanya bisa diakses jika BELUM login)
 Route::middleware('guest')->group(function () {

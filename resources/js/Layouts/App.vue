@@ -35,7 +35,7 @@ const isActive = (routeName) => {
                         <template v-if="user">
                             <li class="nav-item">
                                 <Link class="nav-link app-link" :href="route(role === 'admin' ? 'adminDashboard' : 'userDashboard')" :class="{ 'active': isActive('adminDashboard') || isActive('userDashboard') }">
-                                    <i class="bi bi-grid-1x2-fill me-1"></i> Dashboard
+                                    <i class="bi bi-speedometer2 me-1"></i> Dashboard
                                 </Link>
                             </li>
                         </template>
@@ -47,17 +47,25 @@ const isActive = (routeName) => {
 
                     <div class="d-flex align-items-center gap-2">
                         <template v-if="user">
-                            <span class="user-chip d-none d-md-inline-flex">
-                                <i class="bi bi-person-circle me-2"></i>
+                            <span class="user-chip d-md-inline-flex">
+                                <i v-if="user.role === 'admin'" class="bi bi-gem me-2 text-warning"></i>
+                                <i v-else class="bi bi-person-circle me-2"></i>
                                 <strong>{{ user.name }}</strong>
                             </span>
-                            <Link :href="route('logout')" method="post" as="button" class="btn btn-sm app-link text-white app-logout-btn">
+                            <Link :href="route('logout')" method="post" as="button" class="btn btn-sm app-link text-white app-btn user-chip me-2">
                                 <i class="bi bi-box-arrow-right me-1"></i> Logout
                             </Link>
                         </template>
                         <template v-else>
-                            <Link :href="route('login')" class="btn btn-sm app-link text-white me-2">Masuk</Link>
-                            <Link :href="route('register')" class="btn btn-sm app-link text-white px-3">Daftar</Link>
+                            <span class="user-chip d-md-inline-flex px-3 me-2">
+                                <i class="bi bi-people-fill text-white"></i>
+                            </span>
+                            <Link :href="route('login')" class="btn btn-sm app-link app-btn user-chip text-white px-3 me-2">
+                                <i class="bi bi-box-arrow-in-right me-1"></i> Masuk
+                            </Link>
+                            <Link :href="route('register')" class="btn btn-sm app-link app-btn user-chip text-white px-3">
+                                <i class="bi bi-person-plus me-1"></i> Daftar
+                            </Link>
                         </template>
                     </div>
                 </div>
@@ -79,6 +87,6 @@ const isActive = (routeName) => {
 .app-link:hover, .app-link.active { color: #5eead4 !important; }
 .admin-link { color: #fb923c !important; }
 .user-chip { border: 1px solid rgba(148, 163, 184, 0.4); background: rgba(15, 23, 42, 0.5); color: #e2e8f0; border-radius: 999px; padding: 0.4rem 0.8rem; font-size: 0.85rem; }
-.app-logout-btn { border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.45); color: #e2e8f0; background: rgba(15, 23, 42, 0.5); }
+.app-btn { border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.45); color: #e2e8f0; background: rgba(15, 23, 42, 0.5); }
 .app-main { padding-top: 100px; padding-bottom: 26px; }
 </style>

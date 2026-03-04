@@ -117,7 +117,7 @@ watch(() => form.login, () => {
 
                             <button type="submit" class="btn login-btn w-100" :disabled="form.processing">
                                 <span v-if="form.processing" class="spinner-border spinner-border-sm me-2"></span>
-                                <i class="bi bi-box-arrow-right me-1"></i> Masuk
+                                <i class="bi bi-box-arrow-in-right me-1"></i> Masuk
                             </button>
 
                             <div class="d-flex align-items-center my-2">
